@@ -1,0 +1,36 @@
+# //------Asoul Bot配置文件------\\
+
+bot-num: 4001451
+
+api-base: "http://api.bilibili.com"
+
+cookie:
+  bili_jct: ""
+  SESSDATA: ""
+
+
+rules:
+    -
+        name: 嘉然
+        keyword: 嘉然
+        include: 
+          -
+            嘉然
+            asoul
+        text: "嘉然我真的好喜欢你啊"
+    -
+        name: 向晚
+        keyword: 向晚
+        include: 
+          -
+            向晚
+            asoul
+        text: "向晚我真的好喜欢你啊"
+
+
+
+database:
+  sqlite: data/db.sqlite
+
+
+# \\------Asoul Bot配置文件------//
