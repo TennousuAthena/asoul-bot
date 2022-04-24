@@ -2,8 +2,12 @@ from pyclbr import Function
 import sys, os, time
 import requests, yaml
 
+# 记录日志
 def log(content, level="info"):
-    print("\033[1;36m["+level+"]["+time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+"]" + content + "\x1b[0m")
+    color = {"info": "36", "debug": "34", "warn": "33", "err":"31"}
+    print("\033[1;"+color[level]+"m["+level+"]["+time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+"]" + content + "\x1b[0m")
+
+    
 
 with open('ascii-art.txt', 'r') as f:
     print(f.read())
@@ -26,9 +30,10 @@ for rule in conf['rules']:
         response = requests.get(url).json()
         results =  response['data']['result']
         for result in results:
-            for include in rule['include']:
-                if include in result['title']:
-                    print(result['title'])
+            if  len(result['hit_columns'])>=2:
+                log("合格结果：" + result['title'], "debug")
+            else:
+                log("不合格结果：" + result['title'])
     except Exception as ex:
         print ("Error:%s"%ex)
 
